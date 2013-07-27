@@ -61,5 +61,6 @@ def remove(filename, database):
     conn = sqlite3.connect(database)
     c = conn.cursor()
     c.execute("DELETE FROM queue WHERE FILE=?", [filename])
-
+    
+    conn.commit()
     conn.close()
