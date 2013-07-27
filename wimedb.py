@@ -45,6 +45,18 @@ def get_most_recent(database):
     conn.close()
     return ret
 
+def get_songs(database):
+    conn = sqlite3.connect(database)
+    c = conn.cursor()
+    
+    ret = []
+
+    for row in c.execute("SELECT * FROM queue ORDER BY TIME"):
+        ret.append(row)
+
+    conn.close()
+    return ret
+
 def remove(filename, database):
     conn = sqlite3.connect(database)
     c = conn.cursor()
